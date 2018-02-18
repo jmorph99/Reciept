@@ -56,7 +56,7 @@ public class NewMain {
                PDFTextStripper tStripper = new PDFTextStripper();
                String pdfFileInText = tStripper.getText(document).replace("\t", " ");
                //System.out.println(pdfFileInText);
-               Pattern p = Pattern.compile("[$](([1-9]+\\.?\\d*)|([0]\\.\\d*)|[0])");
+               Pattern p = Pattern.compile("[$](([0-9]+\\.?\\d*)|([0]\\.\\d\\d)|[0])");
                Matcher m = p.matcher(pdfFileInText);
                while(m.find()){
                    hs.add(Float.valueOf(pdfFileInText.substring(m.start()+1, m.end())));
@@ -71,7 +71,7 @@ public class NewMain {
                }
                
                
-               String name = file.getAbsolutePath() + "-" + price;
+               String name = file.getAbsolutePath() + "-" + price + ".pdf";
                System.out.println(name);
                file.renameTo(new File(name));
            }
